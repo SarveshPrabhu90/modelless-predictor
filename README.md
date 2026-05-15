@@ -106,6 +106,19 @@ Trains on 300 observations, evaluates on 200 test samples, and saves:
 **How to interpret:** Mean residual ≈ 0 means the model is unbiased. P90/P95 give
 worst-case error bounds. Look for trends in residual-vs-input to spot missed relationships.
 
+## Optimization Agreement
+
+Compares optimal input recommendations from the explicit baseline vs the learned predictor:
+
+```bash
+python run_optimization.py
+```
+
+Both optimizers maximize yield subject to purity ≥ 88% over the same input ranges.
+Results are saved to `output/optimization_agreement.csv` with a match score
+(1.0 = identical recommendations). A score above 0.95 indicates the learned model
+is operationally equivalent to the explicit baseline.
+
 ## Run Manifest
 
 Both `python run_predictor.py` and `python validate.py` save a
