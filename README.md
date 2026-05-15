@@ -133,6 +133,20 @@ noise-free ground truth, and checks all constraints (purity ≥ 88%, yield > 0,
 input ranges). Saves `output/constraint_verification.csv` with a
 `recommendation_safe` boolean.
 
+## Noise Sensitivity
+
+Tests how robust the predictor is to increasing observation noise:
+
+```bash
+python run_noise.py
+```
+
+Generates data locally (no TCP server needed) at 5 noise levels:
+none (σ=0), low (0.25), medium (0.5), high (1.0), extreme (2.0).
+For each level, trains on 300 samples, evaluates on 200 noise-free test
+samples, and reports MAE, RMSE, R², optimization match score, and
+constraint safety. Saves `output/noise_sensitivity.csv`.
+
 ## Run Manifest
 
 Both `python run_predictor.py` and `python validate.py` save a
