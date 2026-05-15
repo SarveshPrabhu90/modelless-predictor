@@ -19,6 +19,9 @@ venv/
 # pytest
 .pytest_cache/
 
+# Run output
+output/
+
 # OS
 Thumbs.db
 .DS_Store

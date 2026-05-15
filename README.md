@@ -74,6 +74,30 @@ modelless-predictor/
     └── test_optimizer.py
 ```
 
+## Sample-Size Sensitivity
+
+Tests how many observations the predictor needs before it becomes useful:
+
+```bash
+python run_sensitivity.py
+```
+
+Sweeps over sample sizes [5, 10, 25, 50, 100, 200], trains on each subset,
+evaluates against a fixed 100-sample test set, and reports MAE, RMSE, and R²
+for both yield and purity. Results are saved to `output/sample_size_sensitivity.csv`
+with a `run_manifest.json`.
+
+**How to interpret:** R² should climb toward 1.0 as n increases, with diminishing
+returns beyond a certain point. That point is the practical minimum sample size.
+
+## Run Manifest
+
+Both `python run_predictor.py` and `python validate.py` save a
+`run_manifest.json` to the `output/` folder. The manifest records run metadata
+(timestamp, sample sizes, train/test split, learned coefficients, metrics,
+optimization results) for every run. See `docs/SHARED_OUTPUT_CONTRACT.md` in the
+workspace root for the full schema.
+
 ## Next Steps
 
 - See [GitHub Issues](../../issues) for planned work.
