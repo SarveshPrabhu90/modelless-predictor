@@ -90,6 +90,22 @@ with a `run_manifest.json`.
 **How to interpret:** R² should climb toward 1.0 as n increases, with diminishing
 returns beyond a certain point. That point is the practical minimum sample size.
 
+## Residual Analysis
+
+Examines where the predictor is wrong, not just whether overall metrics are good:
+
+```bash
+python run_residuals.py
+```
+
+Trains on 300 observations, evaluates on 200 test samples, and saves:
+- `output/residual_analysis.csv` — per-observation inputs, actuals, predictions, residuals
+- `output/residual_summary.csv` — mean, mean absolute, max absolute, P50/P90/P95 errors
+- `output/run_manifest.json`
+
+**How to interpret:** Mean residual ≈ 0 means the model is unbiased. P90/P95 give
+worst-case error bounds. Look for trends in residual-vs-input to spot missed relationships.
+
 ## Run Manifest
 
 Both `python run_predictor.py` and `python validate.py` save a
