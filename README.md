@@ -119,6 +119,20 @@ Results are saved to `output/optimization_agreement.csv` with a match score
 (1.0 = identical recommendations). A score above 0.95 indicates the learned model
 is operationally equivalent to the explicit baseline.
 
+## Constraint Verification
+
+Verifies that the modelless optimizer's recommendation remains feasible under
+the explicit baseline:
+
+```bash
+python run_constraints.py
+```
+
+Takes the learned optimizer's recommended inputs, evaluates them through the
+noise-free ground truth, and checks all constraints (purity ≥ 88%, yield > 0,
+input ranges). Saves `output/constraint_verification.csv` with a
+`recommendation_safe` boolean.
+
 ## Run Manifest
 
 Both `python run_predictor.py` and `python validate.py` save a
